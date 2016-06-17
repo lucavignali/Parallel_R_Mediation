@@ -2,4 +2,21 @@
 # in this case 5GB csv, zipped as 515MB file.
 # First commit locally, then push to the repository.
 
+library(data.table)
+library(bit64)
 
+
+## DETERMINE the number of rows in a csv file, without loading in memory.
+testcon <- file("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.csv",open="r")
+readsizeof <- 20000
+nooflines <- 0
+( while((linesread <- length(readLines(testcon,readsizeof))) > 0 ) 
+  nooflines <- nooflines+linesread )
+close(testcon)
+nooflines
+# diameter is 8.5M rows.
+
+
+# Read the .zip file as data.frame or data.table.
+system.time(data <- read.csv(unzip("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.zip"), nrows = 10))
+system.time(data <- fread(unzip("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.zip"), nrows=10))
