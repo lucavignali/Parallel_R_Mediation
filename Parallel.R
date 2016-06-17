@@ -17,6 +17,22 @@ nooflines
 # diameter is 8.5M rows.
 
 
-# Read the .zip file as data.frame or data.table.
+# Read 10 rows from the .zip file as data.frame or data.table.
 system.time(data <- read.csv(unzip("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.zip"), nrows = 10))
+#user  system elapsed 
+#42.96   16.67  107.66 
 system.time(data <- fread(unzip("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.zip"), nrows=10))
+#user  system elapsed 
+#41.76   15.08  100.82 
+
+# Read 10000 rows from the .zip file as data.frame or data.table.
+system.time(data <- read.csv(unzip("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.zip"), nrows = 10000))
+#user  system elapsed 
+#45.35   15.98  148.52
+system.time(data <- fread(unzip("diameter_18_prb_MIVDJ03B_ipx_reports_data_1462806000_900_0_3.zip"), nrows=10000))
+#user  system elapsed 
+#42.81   17.04  113.74 
+
+
+
+
